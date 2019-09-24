@@ -1,0 +1,17 @@
+{
+  "generator-cake-addin": {
+    "promptValues": {
+      "projectName": "Pnpm",
+      "repositoryOwner": "Nikita Potapenko",
+      "projectMaintainer": "Potapy4",
+      "author": "Potapy4",
+      "description": "A wrapper around pnpm functionality within a Cake build script.",
+      "licenseType": "MIT",
+      "sourceDir": "./src",
+      "scriptName": "build.cake",
+      "enableAllContributors": true,
+      "enableWyam": true,
+      "enableTravis": true
+    }
+  }
+}
