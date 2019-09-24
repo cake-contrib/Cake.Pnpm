@@ -20,8 +20,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://nikita potapenko.github.io/Cake.Pnpm</PackageProjectUrl>
         <PackageTags>cake;addin;pnpm</PackageTags>
-        <RepositoryUrl>https://github.com/Nikita Potapenko/Cake.Pnpm.git</RepositoryUrl>
-        <PackageReleaseNotes>https://github.com/Nikita Potapenko/Cake.Pnpm/releases/tag/$(Version)</PackageReleaseNotes>
+        <RepositoryUrl>https://github.com/cake-contrib/Cake.Pnpm.git</RepositoryUrl>
+        <PackageReleaseNotes>https://github.com/cake-contrib/Cake.Pnpm/releases/tag/$(Version)</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
