@@ -1,18 +1,25 @@
 namespace Cake.Pnpm.Tests
 {
+    using Cake.Core.IO;
+    using Cake.Core.Tooling;
     using Cake.Testing.Fixtures;
 
-    public class PnpmRunnerFixture : ToolFixture<PnpmSettings>
+    internal abstract class PnpmFixture<TSettings> : PnpmFixture<TSettings, ToolFixtureResult>
+    where TSettings : ToolSettings, new()
     {
-        public PnpmRunnerFixture()
-            : base("Pnpm.exe")
+        protected override ToolFixtureResult CreateResult(FilePath path, ProcessSettings process)
         {
+            return new ToolFixtureResult(path, process);
         }
+    }
 
-        protected override void RunTool()
+    internal abstract class PnpmFixture<TSettings, TFixtureResult> : ToolFixture<TSettings, TFixtureResult>
+        where TSettings : ToolSettings, new()
+        where TFixtureResult : ToolFixtureResult
+    {
+        protected PnpmFixture()
+            : base("pnpm.cmd")
         {
-            var tool = new PnpmRunner(FileSystem, Environment, ProcessRunner, Tools);
-            tool.Run(Settings);
         }
     }
 }
