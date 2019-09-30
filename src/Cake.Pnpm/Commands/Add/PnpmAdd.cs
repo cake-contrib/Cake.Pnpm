@@ -1,4 +1,4 @@
-namespace Cake.Pnpm.Commands.Install
+namespace Cake.Pnpm.Commands.Add
 {
     using System;
     using Cake.Core;
@@ -7,18 +7,18 @@ namespace Cake.Pnpm.Commands.Install
     using Cake.Pnpm;
 
     /// <summary>
-    /// Tool for installing npm packages.
+    /// Tool for adding npm packages.
     /// </summary>
-    public class PnpmInstall : PnpmRunner<PnpmInstallSettings>
+    public class PnpmAdd : PnpmRunner<PnpmAddSettings>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PnpmInstall"/> class.
+        /// Initializes a new instance of the <see cref="PnpmAdd"/> class.
         /// </summary>
         /// <param name="fileSystem">The file system.</param>
         /// <param name="environment">The environment.</param>
         /// <param name="processRunner">The process runner.</param>
         /// <param name="tools">The tool locator.</param>
-        public PnpmInstall(
+        public PnpmAdd(
             IFileSystem fileSystem,
             ICakeEnvironment environment,
             IProcessRunner processRunner,
@@ -28,10 +28,10 @@ namespace Cake.Pnpm.Commands.Install
         }
 
         /// <summary>
-        /// Installs a npm package from the specified settings.
+        /// Adds a npm package from the specified settings.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        public void Install(PnpmInstallSettings settings)
+        public void Install(PnpmAddSettings settings)
         {
             if (settings == null)
             {
