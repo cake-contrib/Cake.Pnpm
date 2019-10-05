@@ -1,4 +1,4 @@
-namespace Cake.Pnpm.Commands.Add
+namespace Cake.Pnpm.Commands.Remove
 {
     using System;
     using System.Collections.Generic;
@@ -6,22 +6,22 @@ namespace Cake.Pnpm.Commands.Add
     using Cake.Core.IO;
 
     /// <summary>
-    /// Contains settings used by <see cref="PnpmAdd"/>.
+    /// Contains settings used by <see cref="PnpmRemove"/>.
     /// </summary>
-    public class PnpmAddSettings : PnpmSettings
+    public class PnpmRemoveSettings : PnpmSettings
     {
         private readonly ISet<string> packages = new HashSet<string>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PnpmAddSettings"/> class.
+        /// Initializes a new instance of the <see cref="PnpmRemoveSettings"/> class.
         /// </summary>
-        public PnpmAddSettings()
-            : base("add")
+        public PnpmRemoveSettings()
+            : base("remove")
         {
         }
 
         /// <summary>
-        /// Gets list of packages to install.
+        /// Gets list of packages to remove.
         /// </summary>
         public IEnumerable<string> Packages { get; internal set; }
 
@@ -31,11 +31,11 @@ namespace Cake.Pnpm.Commands.Add
         public bool Global { get; internal set; }
 
         /// <summary>
-        /// Install a package from the given url.
+        /// Remove a package from the given url.
         /// </summary>
         /// <param name="url">Url to directory containing package.json (see pnpm docs).</param>
-        /// <returns>Instance of <see cref="PnpmAddSettings"/> class.</returns>
-        public PnpmAddSettings Package(Uri url)
+        /// <returns>Instance of <see cref="PnpmRemoveSettings"/> class.</returns>
+        public PnpmRemoveSettings Package(Uri url)
         {
             if (!url.IsAbsoluteUri)
             {
@@ -48,13 +48,13 @@ namespace Cake.Pnpm.Commands.Add
         }
 
         /// <summary>
-        /// Install a package by name, with optional version/tag and scope.
+        /// Remove a package by name, with optional version/tag and scope.
         /// </summary>
         /// <param name="package">Package name.</param>
         /// <param name="versionOrTag">Package version or tag.</param>
         /// <param name="scope">Package scope.</param>
-        /// <returns>Instance of <see cref="PnpmAddSettings"/> class.</returns>
-        public PnpmAddSettings Package(string package, string versionOrTag = null, string scope = null)
+        /// <returns>Instance of <see cref="PnpmRemoveSettings"/> class.</returns>
+        public PnpmRemoveSettings Package(string package, string versionOrTag = null, string scope = null)
         {
             var packageName = package;
             if (!string.IsNullOrWhiteSpace(versionOrTag))
@@ -86,8 +86,8 @@ namespace Cake.Pnpm.Commands.Add
         /// Applies the --global parameter.
         /// </summary>
         /// <param name="enabled"><c>true</c> to apply the parameter.</param>
-        /// <returns>Instance of <see cref="PnpmAddSettings"/> class.</returns>
-        public PnpmAddSettings Globally(bool enabled = true)
+        /// <returns>Instance of <see cref="PnpmRemoveSettings"/> class.</returns>
+        public PnpmRemoveSettings Globally(bool enabled = true)
         {
             this.Global = enabled;
             return this;

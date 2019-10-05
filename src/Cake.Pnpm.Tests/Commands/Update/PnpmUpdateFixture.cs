@@ -1,6 +1,6 @@
 using Cake.Pnpm.Commands.Update;
 
-namespace Cake.Pnpm.Tests.Commands.Install
+namespace Cake.Pnpm.Tests.Commands.Update
 {
     internal sealed class PnpmUpdateFixture : PnpmFixture<PnpmUpdateSettings>
     {
