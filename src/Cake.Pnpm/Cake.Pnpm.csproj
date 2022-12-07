@@ -14,7 +14,7 @@
         <FullYear Condition="'$(StartYear)'!='$(EndYear)'">$(StartYear)-$(EndYear)</FullYear>
 
         <!-- Properties related to packaging -->
-        <Authors>Potapy4</Authors>
+        <Authors>Potapy4, solo12zw74</Authors>
         <Copyright>Copyright © $(FullYear) — Potapy4</Copyright>
         <Description>A wrapper around pnpm functionality within a Cake build script.</Description>
         <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
