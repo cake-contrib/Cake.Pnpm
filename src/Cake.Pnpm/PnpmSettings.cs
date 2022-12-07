@@ -70,7 +70,7 @@ public abstract class PnpmSettings : ToolSettings
     /// <summary>
     ///     Gets or sets the Log level set by Cake.
     /// </summary>
-    internal Verbosity? CakeVerbosityLevel { get; set; }
+    public Verbosity? CakeVerbosityLevel { get; set; }
 
     /// <summary>
     ///     Evaluates the settings and writes them to <paramref name="args" />.

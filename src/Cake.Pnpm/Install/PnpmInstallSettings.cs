@@ -225,7 +225,7 @@ public class PnpmInstallSettings : PnpmSettings
     /// <summary>
     ///     Define the output reporting type
     /// </summary>
-    public OutputReportingType OutputReportingType { get; set; }
+    public OutputReportingType? OutputReportingType { get; set; }
 
     /// <summary>
     ///     Evaluates the settings and writes them to <paramref name="args" />.
@@ -237,11 +237,12 @@ public class PnpmInstallSettings : PnpmSettings
 
         if (Color.HasValue) args.Append(Color.Value ? "--color" : "--no-color");
         if (FrozenLockfile.HasValue) args.Append(FrozenLockfile.Value ? "--frozen-lockfile" : "--no-frozen-lockfile");
-        if (FrozenLockfile.HasValue)
-            args.Append(FrozenLockfile.Value ? "--verify-store-integrity" : "--no-verify-store-integrity");
+
+        if (VerifyStoreIntegrity.HasValue)
+            args.Append(VerifyStoreIntegrity.Value ? "--verify-store-integrity" : "--no-verify-store-integrity");
 
         if (AggregateOutput) args.Append("--aggregate-output");
-        if (ChildConcurrency > 0) args.AppendSwitch("--aggregate-output", ChildConcurrency.ToString());
+        if (ChildConcurrency > 0) args.AppendSwitch("--child-concurrency", ChildConcurrency.ToString());
 
         if (Dev)
         {
@@ -253,15 +254,27 @@ public class PnpmInstallSettings : PnpmSettings
         if (FixLockfile) args.Append("--fix-lockfile");
         if (Force) args.Append("--force");
         if (!string.IsNullOrEmpty(GlobalDir)) args.AppendSwitchQuoted("--global-dir", GlobalDir);
-        if (!string.IsNullOrEmpty(HoistPattern)) args.AppendSwitchQuoted("--hoist-pattern", HoistPattern);
+
+        if (!string.IsNullOrEmpty(HoistPattern))
+        {
+            if (NoHoist || ShamefullyHoist) throw new ArgumentException("Hoist mode conflict");
+            args.AppendSwitchQuoted("--hoist-pattern", HoistPattern);
+        }
+
         if (IgnorePnpmfile) args.Append("--ignore-pnpmfile");
-        if (IgnoreScripts) args.Append("ignore-scripts");
+        if (IgnoreScripts) args.Append("--ignore-scripts");
         if (!string.IsNullOrEmpty(LockfileDir)) args.AppendSwitchQuoted("--lockfile-dir", LockfileDir);
         if (LockfileOnly) args.Append("--lockfile-only");
         if (MergeGitBranchLockfiles) args.Append("--merge-git-branch-lockfiles");
         if (!string.IsNullOrEmpty(ModulesDir)) args.AppendSwitchQuoted("--modules-dir", ModulesDir);
         if (NetworkConcurrency > 0) args.AppendSwitch("--network-concurrency", NetworkConcurrency.ToString());
-        if (NoHoist) args.Append("--no-hoist");
+        if (NoHoist)
+        {
+            if (!string.IsNullOrEmpty(HoistPattern) || ShamefullyHoist)
+                throw new ArgumentException("Hoist mode conflict");
+            args.Append("--no-hoist");
+        }
+
         if (NoLockfile) args.Append("--no-lockfile");
         if (NoOptional) args.Append("--no-optional");
         if (Offline) args.Append("--offline");
@@ -293,7 +306,11 @@ public class PnpmInstallSettings : PnpmSettings
             args.AppendSwitchQuoted("--public-hoist-pattern", PublicHoistPattern);
 
         if (Recursive) args.Append("--recursive");
-        if (ShamefullyHoist) args.Append("--shamefully-hoist");
+        if (ShamefullyHoist)
+        {
+            if (!string.IsNullOrEmpty(HoistPattern) || NoHoist) throw new ArgumentException("Hoist mode conflict");
+            args.Append("--shamefully-hoist");
+        }
 
         if (SideEffectsCache)
         {
@@ -312,16 +329,16 @@ public class PnpmInstallSettings : PnpmSettings
         if (!string.IsNullOrEmpty(VirtualStoreDir)) args.AppendSwitchQuoted("--virtual-store-dir", VirtualStoreDir);
         if (WorkspaceRoot) args.Append("--workspace-root");
 
-        if (PnpmLogLevel != PnpmLogLevel.Silent)
-            switch (OutputReportingType)
+        if (PnpmLogLevel != PnpmLogLevel.Silent && OutputReportingType.HasValue)
+            switch (OutputReportingType.Value)
             {
-                case OutputReportingType.Default:
+                case Install.OutputReportingType.Default:
                     args.AppendSwitch("--reporter", "default");
                     break;
-                case OutputReportingType.AppendOnly:
+                case Install.OutputReportingType.AppendOnly:
                     args.AppendSwitch("--reporter", "append-only");
                     break;
-                case OutputReportingType.Ndjson:
+                case Install.OutputReportingType.Ndjson:
                     args.AppendSwitch("--reporter", "ndjson");
                     break;
                 default:
@@ -329,3 +346,5 @@ public class PnpmInstallSettings : PnpmSettings
             }
     }
 }
+
+
