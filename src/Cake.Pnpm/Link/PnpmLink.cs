@@ -1,38 +1,37 @@
-﻿using System;
+using System;
 using Cake.Core;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Tooling;
 
-namespace Cake.Pnpm.Add;
+namespace Cake.Pnpm.Link;
 
 /// <summary>
-/// Installs a package and any packages that it depends on.
+///     Connect the local project to another one
+///     Visit https://pnpm.io/7.x/cli/link for documentation about this command.
 /// </summary>
-public class PnpmAdd : PnpmTool<PnpmAddSettings>
+public class PnpmLink : PnpmTool<PnpmLinkSettings>
 {
     /// <summary>
-    ///     Initializes a new instance of the <see cref="PnpmAdd" /> class.
+    ///     Initializes a new instance of the <see cref="PnpmLink" /> class.
     /// </summary>
     /// <param name="fileSystem">The file system.</param>
     /// <param name="environment">The environment.</param>
     /// <param name="processRunner">The process runner.</param>
     /// <param name="tools">The tool locator.</param>
     /// <param name="log">Cake log instance.</param>
-    public PnpmAdd(IFileSystem fileSystem, ICakeEnvironment environment, IProcessRunner processRunner,
+    public PnpmLink(IFileSystem fileSystem, ICakeEnvironment environment, IProcessRunner processRunner,
         IToolLocator tools, ICakeLog log) : base(fileSystem, environment, processRunner, tools, log)
     {
     }
 
     /// <summary>
-    ///     Installs a package and any packages that it depends on.
+    ///     Connect the local project to another one
+    ///     Visit https://pnpm.io/7.x/cli/link for documentation about this command.
     /// </summary>
-    /// <param name="settings">The settings.</param>
-    public void Add(PnpmAddSettings settings)
+    public void Link(PnpmLinkSettings settings)
     {
         if (settings == null) throw new ArgumentNullException(nameof(settings));
-
-        if (settings.PackageName == null) throw new ArgumentNullException(nameof(settings.PackageName));
 
         RunCore(settings);
     }
