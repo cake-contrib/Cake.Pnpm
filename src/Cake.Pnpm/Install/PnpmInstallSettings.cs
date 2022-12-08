@@ -43,12 +43,10 @@ public class PnpmInstallSettings : SharedPnpmSettings
     /// </summary>
     public bool Force { get; set; }
 
-
     /// <summary>
     ///     Disable pnpm hooks defined in .pnpmfile.cjs
     /// </summary>
     public bool IgnorePnpmfile { get; set; }
-
 
     /// <summary>
     ///     Dependencies are not downloaded. Only `pnpm-lock.yaml` is updated
@@ -75,18 +73,15 @@ public class PnpmInstallSettings : SharedPnpmSettings
     /// </summary>
     public bool NoOptional { get; set; }
 
-
     /// <summary>
     ///     If the available `pnpm-lock.yaml` satisfies the `package.json` then perform a headless installation
     /// </summary>
     public bool PreferFrozenLockfile { get; set; }
 
-
     /// <summary>
     ///     Packages in `devDependencies` won't be installed
     /// </summary>
     public bool Prod { get; set; }
-
 
     /// <summary>
     ///     All the subdeps will be hoisted into the root node_modules. Your code will have access to them
