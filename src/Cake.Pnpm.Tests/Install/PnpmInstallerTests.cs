@@ -40,7 +40,7 @@ public class PnpmInstallerTests
         Assert.That(result.Args, Is.EqualTo("install"));
     }
 
-    [TestCaseSource(typeof(TestCaseSource))]
+    [TestCaseSource(typeof(InstallTestCaseSource))]
     public string Should_Add_Parameter_If_Set(PnpmInstallSettings settings)
     {
         // Given

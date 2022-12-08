@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Cake.Pnpm.Tests.Link;
 
-public class TestCaseSource : IEnumerable
+public class LinkTestCaseSource : IEnumerable
 {
     public IEnumerator GetEnumerator()
     {

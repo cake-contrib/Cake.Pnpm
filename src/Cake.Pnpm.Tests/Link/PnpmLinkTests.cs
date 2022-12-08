@@ -37,7 +37,7 @@ public class PnpmLinkTests
         Assert.That(result.Args, Is.EqualTo("link"));
     }
 
-    [TestCaseSource(typeof(TestCaseSource))]
+    [TestCaseSource(typeof(LinkTestCaseSource))]
     public string Should_Add_Parameter_If_Set(PnpmLinkSettings settings)
     {
         // Given

@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Cake.Pnpm.Tests.Add;
 
-public class TestCaseSource : IEnumerable
+public class AddTestCaseSource : IEnumerable
 {
     public const string StubPackageName = "foo@bar";
 
