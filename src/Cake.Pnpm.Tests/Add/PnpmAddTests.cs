@@ -8,13 +8,13 @@ namespace Cake.Pnpm.Tests.Add;
 [TestOf(typeof(PnpmAdd))]
 public class PnpmAddTests
 {
-    private PnpmAddFixture _fixture;
-
     [SetUp]
     public void Init()
     {
         _fixture = new PnpmAddFixture();
     }
+
+    private PnpmAddFixture _fixture;
 
     [Test]
     public void Should_Throw_If_Settings_Are_Null()
@@ -30,11 +30,13 @@ public class PnpmAddTests
     [Test]
     public void Should_Add_Mandatory_Arguments()
     {
+        // Given
+        _fixture.Settings.PackageName = TestCaseSource.StubPackageName;
         // When
         var result = _fixture.Run();
 
         // Then
-        Assert.That(result.Args, Is.EqualTo("add"));
+        Assert.That(result.Args, Is.EqualTo($"add \"{TestCaseSource.StubPackageName}\""));
     }
 
     [TestCaseSource(typeof(TestCaseSource))]
@@ -50,17 +52,18 @@ public class PnpmAddTests
         return result.Args;
     }
 
-    [TestCase(Verbosity.Diagnostic, "add --loglevel debug")]
-    [TestCase(Verbosity.Minimal, "add --loglevel warn")]
-    [TestCase(Verbosity.Normal, "add")]
-    [TestCase(Verbosity.Quiet, "add --silent")]
-    [TestCase(Verbosity.Verbose, "add --loglevel info")]
+    [TestCase(Verbosity.Diagnostic, $"add \"{TestCaseSource.StubPackageName}\" --loglevel debug")]
+    [TestCase(Verbosity.Minimal, $"add \"{TestCaseSource.StubPackageName}\" --loglevel warn")]
+    [TestCase(Verbosity.Normal, $"add \"{TestCaseSource.StubPackageName}\"")]
+    [TestCase(Verbosity.Quiet, $"add \"{TestCaseSource.StubPackageName}\" --silent")]
+    [TestCase(Verbosity.Verbose, $"add \"{TestCaseSource.StubPackageName}\" --loglevel info")]
     public void Should_Use_Cake_LogLevel_If_LogLevel_Is_Set_To_Default(
         Verbosity verbosity,
         string expected)
     {
         // Given
-        _fixture.Settings = new PnpmAddSettings {CakeVerbosityLevel = verbosity};
+        _fixture.Settings = new PnpmAddSettings
+            {CakeVerbosityLevel = verbosity, PackageName = TestCaseSource.StubPackageName};
 
         // When
         var result = _fixture.Run();
@@ -69,9 +72,3 @@ public class PnpmAddTests
         Assert.That(result.Args, Is.EqualTo(expected));
     }
 }
-
-
-
-
-
-
