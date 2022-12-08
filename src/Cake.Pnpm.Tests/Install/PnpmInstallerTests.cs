@@ -1,5 +1,7 @@
-﻿using Cake.Core.Diagnostics;
+﻿using System;
+using Cake.Core.Diagnostics;
 using Cake.Pnpm.Install;
+using Cake.Testing.Fixtures;
 using NUnit.Framework;
 
 namespace Cake.Pnpm.Tests.Install;
@@ -8,44 +10,44 @@ namespace Cake.Pnpm.Tests.Install;
 [TestOf(typeof(PnpmInstaller))]
 public class PnpmInstallerTests
 {
+    private PnpmInstallerFixture _fixture;
+
+    [SetUp]
+    public void Init()
+    {
+        _fixture = new PnpmInstallerFixture();
+    }
+
     [Test]
     public void Should_Throw_If_Settings_Are_Null()
     {
         // Given
-        var fixture = new PnpmInstallerFixture
-        {
-            Settings = null
-        };
+        _fixture.Settings = null;
 
         // When
         // Then
-        Assert.That(fixture.Run, Throws.ArgumentNullException);
+        Assert.That(_fixture.Run, Throws.ArgumentNullException);
     }
 
     [Test]
     public void Should_Add_Mandatory_Arguments()
     {
         // Given
-        var fixture = new PnpmInstallerFixture();
-
         // When
-        var result = fixture.Run();
+        var result = _fixture.Run();
 
         // Then
         Assert.That(result.Args, Is.EqualTo("install"));
     }
 
-    [TestCaseSource(typeof(FlagsTestCaseSource))]
+    [TestCaseSource(typeof(TestCaseSource))]
     public string Should_Add_Parameter_If_Set(PnpmInstallSettings settings)
     {
         // Given
-        var fixture = new PnpmInstallerFixture
-        {
-            Settings = settings
-        };
+        _fixture.Settings = settings;
 
         // When
-        var result = fixture.Run();
+        var result = _fixture.Run();
 
         // Then
         return result.Args;
@@ -57,21 +59,18 @@ public class PnpmInstallerTests
     public void Should_Not_Throw_Exception_If_Dev_Prod_Not_Conflicting(bool dev, bool prod, string argumentValue)
     {
         // Given
-        var fixture = new PnpmInstallerFixture
+        _fixture.Settings = new PnpmInstallSettings
         {
-            Settings =
-            {
-                Dev = dev,
-                Prod = prod
-            }
+            Dev = dev,
+            Prod = prod
         };
 
         // When
-        var result = () => fixture.Run();
+        ToolFixtureResult Result() => _fixture.Run();
 
         // Then
-        Assert.That(result, Throws.Nothing);
-        Assert.That(result().Args, Is.EqualTo($"install{argumentValue}"));
+        Assert.That((Func<ToolFixtureResult>) Result, Throws.Nothing);
+        Assert.That(Result().Args, Is.EqualTo($"install{argumentValue}"));
     }
 
 
@@ -79,20 +78,17 @@ public class PnpmInstallerTests
     public void Should_Throw_Exception_If_Dev_Prod_Conflicting()
     {
         // Given
-        var fixture = new PnpmInstallerFixture
+        _fixture.Settings = new PnpmInstallSettings
         {
-            Settings =
-            {
-                Dev = true,
-                Prod = true
-            }
+            Dev = true,
+            Prod = true
         };
 
         // When
-        var result = () => fixture.Run();
+        ToolFixtureResult Result() => _fixture.Run();
 
         // Then
-        Assert.That(result, Throws.ArgumentException);
+        Assert.That((Func<ToolFixtureResult>) Result, Throws.ArgumentException);
     }
 
     [TestCase(true, true, "")]
@@ -101,21 +97,18 @@ public class PnpmInstallerTests
     public void Should_Throw_Exception_If_Hoist_Conflicting(bool shamefullyHoist, bool noHoist, string hoistPattern)
     {
         // Given
-        var fixture = new PnpmInstallerFixture
+        _fixture.Settings = new PnpmInstallSettings
         {
-            Settings =
-            {
-                ShamefullyHoist = shamefullyHoist,
-                NoHoist = noHoist,
-                HoistPattern = hoistPattern
-            }
+            ShamefullyHoist = shamefullyHoist,
+            NoHoist = noHoist,
+            HoistPattern = hoistPattern
         };
 
         // When
-        var result = () => fixture.Run();
+        ToolFixtureResult Result() => _fixture.Run();
 
         // Then
-        Assert.That(result, Throws.ArgumentException);
+        Assert.That((Func<ToolFixtureResult>) Result, Throws.ArgumentException);
     }
 
     [TestCase(Verbosity.Diagnostic, "install --loglevel debug")]
@@ -128,16 +121,13 @@ public class PnpmInstallerTests
         string expected)
     {
         // Given
-        var fixture = new PnpmInstallerFixture
+        _fixture.Settings = new PnpmInstallSettings
         {
-            Settings =
-            {
-                CakeVerbosityLevel = verbosity
-            }
+            CakeVerbosityLevel = verbosity
         };
 
         // When
-        var result = fixture.Run();
+        var result = _fixture.Run();
 
         // Then
         Assert.That(result.Args, Is.EqualTo(expected));

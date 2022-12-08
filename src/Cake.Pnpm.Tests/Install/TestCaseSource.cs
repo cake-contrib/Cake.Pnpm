@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Cake.Pnpm.Tests.Install;
 
-public class FlagsTestCaseSource : IEnumerable
+public class TestCaseSource : IEnumerable
 {
     public IEnumerator GetEnumerator()
     {
