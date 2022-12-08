@@ -1,4 +1,5 @@
-﻿using Cake.Core;
+﻿using System;
+using Cake.Core;
 using Cake.Core.IO;
 
 namespace Cake.Pnpm.Add;
@@ -14,6 +15,11 @@ public class PnpmAddSettings : SharedPnpmSettings
     public PnpmAddSettings() : base("add")
     {
     }
+
+    /// <summary>
+    /// Package name to install
+    /// </summary>
+    public string PackageName { get; set; }
 
     /// <summary>
     ///     Install exact version
@@ -58,6 +64,8 @@ public class PnpmAddSettings : SharedPnpmSettings
     /// <inheritdoc cref="PnpmSettings" />
     protected override void EvaluateCore(ProcessArgumentBuilder args)
     {
+        if (string.IsNullOrEmpty(PackageName)) throw new ArgumentException($"{PackageName} setting is required for that command");
+        args.AppendQuoted(PackageName);
         base.EvaluateCore(args);
 
         if (SaveExact.HasValue) args.Append(SaveExact.Value ? "--save-exact" : "--no-save-exact");

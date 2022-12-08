@@ -79,16 +79,7 @@ public abstract class PnpmSettings : ToolSettings
     internal void Evaluate(ProcessArgumentBuilder args)
     {
         args.Append(Command);
-        AppendNpmSettings(args);
         EvaluateCore(args);
-    }
-
-    /// <summary>
-    ///     Evaluates the settings and appends Npm specific options to arguments
-    /// </summary>
-    /// <param name="args">The argument builder into which the settings should be written.</param>
-    private void AppendNpmSettings(ProcessArgumentBuilder args)
-    {
         AppendLogLevel(args, PnpmLogLevel);
     }
 
