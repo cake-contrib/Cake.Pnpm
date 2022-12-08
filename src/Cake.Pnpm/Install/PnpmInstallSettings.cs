@@ -162,10 +162,7 @@ public class PnpmInstallSettings : SharedPnpmSettings
     /// </summary>
     public OutputReportingType? OutputReportingType { get; set; }
 
-    /// <summary>
-    ///     Evaluates the settings and writes them to <paramref name="args" />.
-    /// </summary>
-    /// <param name="args">The argument builder into which the settings should be written.</param>
+    /// <inheritdoc cref="PnpmSettings"/>
     protected override void EvaluateCore(ProcessArgumentBuilder args)
     {
         base.EvaluateCore(args);
@@ -193,7 +190,6 @@ public class PnpmInstallSettings : SharedPnpmSettings
         }
 
         if (IgnorePnpmfile) args.Append("--ignore-pnpmfile");
-        if (IgnoreScripts) args.Append("--ignore-scripts");
         if (!string.IsNullOrEmpty(LockfileDir)) args.AppendSwitchQuoted("--lockfile-dir", LockfileDir);
         if (LockfileOnly) args.Append("--lockfile-only");
         if (MergeGitBranchLockfiles) args.Append("--merge-git-branch-lockfiles");
@@ -272,7 +268,3 @@ public class PnpmInstallSettings : SharedPnpmSettings
             }
     }
 }
-
-
-
-

@@ -35,4 +35,3 @@ public class PnpmAdd : PnpmTool<PnpmAddSettings>
         RunCore(settings);
     }
 }
-

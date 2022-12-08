@@ -3,8 +3,15 @@ using Cake.Core.IO;
 
 namespace Cake.Pnpm;
 
+/// <summary>
+///     Intermediate helping classes to keep common settings between several tools
+/// </summary>
 public abstract class SharedPnpmSettings : PnpmSettings
 {
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="SharedPnpmSettings" /> class.
+    /// </summary>
+    /// <param name="command"></param>
     protected SharedPnpmSettings(string command) : base(command)
     {
     }
@@ -79,6 +86,7 @@ public abstract class SharedPnpmSettings : PnpmSettings
     /// </summary>
     public bool WorkspaceRoot { get; set; }
 
+    /// <inheritdoc cref="PnpmSettings"/>
     protected override void EvaluateCore(ProcessArgumentBuilder args)
     {
         base.EvaluateCore(args);
@@ -86,6 +94,7 @@ public abstract class SharedPnpmSettings : PnpmSettings
         if (AggregateOutput) args.Append("--aggregate-output");
         if (!string.IsNullOrEmpty(Dir)) args.AppendSwitchQuoted("--dir", Dir);
         if (!string.IsNullOrEmpty(GlobalDir)) args.AppendSwitchQuoted("--global-dir", GlobalDir);
+        if (IgnoreScripts) args.Append("--ignore-scripts");
         if (Offline) args.Append("--offline");
         if (PreferOffline) args.Append("--prefer-offline");
         if (Recursive) args.Append("--recursive");
@@ -96,6 +105,3 @@ public abstract class SharedPnpmSettings : PnpmSettings
         if (!string.IsNullOrEmpty(StoreDir)) args.AppendSwitchQuoted("--store-dir", StoreDir);
     }
 }
-
-
-
