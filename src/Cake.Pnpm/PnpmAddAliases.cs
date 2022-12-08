@@ -46,9 +46,9 @@ public static class PnpmAddAliases
 
 
         AddinInformation.LogVersionInformation(context.Log);
-        var pnpmInstall = new PnpmAdd(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools,
+        var pnpmAdd = new PnpmAdd(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools,
             context.Log);
-        pnpmInstall.Add(settings);
+        pnpmAdd.Add(settings);
     }
 }
 
