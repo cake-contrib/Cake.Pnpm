@@ -14,6 +14,18 @@ namespace Cake.Pnpm;
 public static class PnpmInstallAliases
 {
     /// <summary>
+    /// Installs packages for the project in the current working directory.
+    /// </summary>
+    /// <param name="context">The context.</param>
+    [CakeMethodAlias]
+    [CakeAliasCategory("Install")]
+    public static void PnpmInstall(this ICakeContext context)
+    {
+        if (context == null) throw new ArgumentNullException(nameof(context));
+        context.PnpmInstall(new PnpmInstallSettings());
+    }
+
+    /// <summary>
     ///     Install packages using the settings returned by a configurator.
     /// </summary>
     /// <param name="context">The context.</param>

@@ -13,6 +13,27 @@ namespace Cake.Pnpm;
 [CakeNamespaceImport("Cake.Pnpm.Add")]
 public static class PnpmAddAliases
 {
+
+    /// <summary>
+    ///     Install package
+    /// </summary>
+    /// <param name="context">The context.</param>
+    /// <example>
+    /// <code>
+    /// <![CDATA[
+    ///     PnpmAdd();
+    /// ]]>
+    /// </code>
+    /// </example>
+    [CakeMethodAlias]
+    [CakeAliasCategory("Add")]
+    public static void PnpmAdd(this ICakeContext context)
+    {
+        if (context == null) throw new ArgumentNullException(nameof(context));
+
+        context.PnpmAdd(new PnpmAddSettings());
+    }
+
     /// <summary>
     ///     Install package using the settings returned by a configurator.
     /// </summary>
