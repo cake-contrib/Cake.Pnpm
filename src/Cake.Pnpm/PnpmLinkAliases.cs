@@ -18,7 +18,7 @@ public static class PnpmLinkAliases
     /// </summary>
     /// <param name="context">The context.</param>
     /// <param name="path">Path to what to link</param>
-    /// /// <example>
+    /// <example>
     /// <para>From the pnpm documentation</para>
     /// <code>
     /// <![CDATA[
@@ -42,7 +42,7 @@ public static class PnpmLinkAliases
     /// <param name="context">The context.</param>
     /// <param name="configurator">The settings configurator.</param>
     /// <param name="path">Path to what to link</param>
-    /// /// <example>
+    /// <example>
     /// <para>From the pnpm documentation</para>
     /// <code>
     /// <![CDATA[
@@ -53,7 +53,7 @@ public static class PnpmLinkAliases
     /// </code>
     /// </example>
     [CakeMethodAlias]
-    [CakeAliasCategory("Install")]
+    [CakeAliasCategory("Link")]
     public static void PnpmLink(this ICakeContext context, string path, Action<PnpmLinkSettings> configurator)
     {
         if (context == null) throw new ArgumentNullException(nameof(context));
@@ -93,8 +93,8 @@ public static class PnpmLinkAliases
         if (string.IsNullOrEmpty(settings.Path)) throw new ArgumentNullException(nameof(settings.Path));
 
         AddinInformation.LogVersionInformation(context.Log);
-        var pnpmInstall = new PnpmLink(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools,
+        var pnpmLink = new PnpmLink(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools,
             context.Log);
-        pnpmInstall.Link(settings);
+        pnpmLink.Link(settings);
     }
 }
