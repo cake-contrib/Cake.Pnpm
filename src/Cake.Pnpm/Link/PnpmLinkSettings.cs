@@ -1,3 +1,4 @@
+using System;
 using Cake.Core;
 using Cake.Core.IO;
 
@@ -14,6 +15,11 @@ public class PnpmLinkSettings : PnpmSettings
     public PnpmLinkSettings() : base("link")
     {
     }
+
+    /// <summary>
+    ///     Specification of what to link. It might be a folder or package name
+    /// </summary>
+    public string Path { get; set; }
 
     /// <summary>
     ///     Controls colors in the output. By default, output is always colored when it goes directly to a terminal
@@ -56,7 +62,12 @@ public class PnpmLinkSettings : PnpmSettings
     /// <inheritdoc />
     protected override void EvaluateCore(ProcessArgumentBuilder args)
     {
+        if (string.IsNullOrEmpty(Path)) throw new ArgumentException($"{nameof(Path)} setting is required for that command");
+
+        args.AppendQuoted(Path);
+
         base.EvaluateCore(args);
+
         if (Color.HasValue) args.Append(Color.Value ? "--color" : "--no-color");
         if (AggregateOutput) args.Append("--aggregate-output");
         if (!string.IsNullOrEmpty(Dir)) args.AppendSwitchQuoted("--dir", Dir);

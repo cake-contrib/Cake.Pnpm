@@ -65,7 +65,9 @@ public class PnpmAddSettings : SharedPnpmSettings
     protected override void EvaluateCore(ProcessArgumentBuilder args)
     {
         if (string.IsNullOrEmpty(PackageName)) throw new ArgumentException($"{PackageName} setting is required for that command");
+
         args.AppendQuoted(PackageName);
+
         base.EvaluateCore(args);
 
         if (SaveExact.HasValue) args.Append(SaveExact.Value ? "--save-exact" : "--no-save-exact");

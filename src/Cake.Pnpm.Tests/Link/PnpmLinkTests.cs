@@ -30,11 +30,14 @@ public class PnpmLinkTests
     [Test]
     public void Should_Add_Mandatory_Arguments()
     {
+        // Given
+        _fixture.Settings.Path = LinkTestCaseSource.StubPath;
+
         // When
         var result = _fixture.Run();
 
         // Then
-        Assert.That(result.Args, Is.EqualTo("link"));
+        Assert.That(result.Args, Is.EqualTo($"link \"{LinkTestCaseSource.StubPath}\""));
     }
 
     [TestCaseSource(typeof(LinkTestCaseSource))]
