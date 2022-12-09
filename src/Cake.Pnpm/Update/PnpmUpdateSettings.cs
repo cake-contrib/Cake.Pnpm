@@ -19,6 +19,13 @@ public class PnpmUpdateSettings : PnpmSettings
     }
 
     /// <summary>
+    ///     Aggregate output from child processes that are run in parallel, and only print output when child process is
+    ///     finished. It makes reading large logs after running `pnpm recursive` with `--parallel` or with
+    ///     `--workspace-concurrency` much easier (especially on CI). Only `--reporter=append-only` is supported.
+    /// </summary>
+    public bool AggregateOutput { get; set; }
+
+    /// <summary>
     ///     Controls colors in the output. By default, output is always colored when it goes directly to a terminal
     /// </summary>
     public bool? Color { get; set; }
@@ -114,11 +121,11 @@ public class PnpmUpdateSettings : PnpmSettings
 
         base.EvaluateCore(args);
 
+        if (AggregateOutput) args.Append("--aggregate-output");
         if (Color.HasValue) args.Append(Color.Value ? "--color" : "--no-color");
         if (Depth > 0) args.AppendSwitch("--depth", Depth.ToString());
         if (Dev) args.Append("--dev");
         if (!string.IsNullOrEmpty(Dir)) args.AppendSwitchQuoted("--dir", Dir);
-        if (Global) args.AppendSwitchQuoted("--global", Dir);
         if (!string.IsNullOrEmpty(GlobalDir)) args.AppendSwitchQuoted("--global-dir", GlobalDir);
         if (Global) args.Append("--global");
         if (Interactive) args.Append("--interactive");
