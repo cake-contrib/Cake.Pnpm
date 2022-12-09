@@ -53,6 +53,7 @@ public class PnpmLinkSettings : PnpmSettings
     /// </summary>
     public bool WorkspaceRoot { get; set; }
 
+    /// <inheritdoc />
     protected override void EvaluateCore(ProcessArgumentBuilder args)
     {
         base.EvaluateCore(args);

@@ -8,6 +8,9 @@ namespace Cake.Pnpm.Prune;
 /// </summary>
 public class PnpmPruneSettings : PnpmSettings
 {
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="PnpmPruneSettings" /> class.
+    /// </summary>
     public PnpmPruneSettings() : base("prune")
     {
     }
