@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+        <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -13,7 +14,7 @@
         <FullYear Condition="'$(StartYear)'!='$(EndYear)'">$(StartYear)-$(EndYear)</FullYear>
 
         <!-- Properties related to packaging -->
-        <Authors>Potapy4</Authors>
+        <Authors>Potapy4, aivanov@oneinc.com</Authors>
         <Copyright>Copyright © $(FullYear) — Potapy4</Copyright>
         <Description>A wrapper around pnpm functionality within a Cake build script.</Description>
         <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
@@ -25,10 +26,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cake.Core" Version="0.33.0" PrivateAssets="All" />
-        <PackageReference Include="stylecop.analyzers" Version="1.1.118">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
+        <PackageReference Include="Cake.Core" Version="1.1.0" PrivateAssets="all" />
     </ItemGroup>
 </Project>
