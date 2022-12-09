@@ -2,7 +2,6 @@ using System;
 using Cake.Core;
 using Cake.Core.Annotations;
 using Cake.Npm;
-using Cake.Pnpm.Link;
 using Cake.Pnpm.Prune;
 
 namespace Cake.Pnpm;
@@ -23,7 +22,7 @@ public static class PnpmPruneAliases
     public static void PnpmPrune(this ICakeContext context)
     {
         if (context == null) throw new ArgumentNullException(nameof(context));
-        context.PnpmLink(new PnpmLinkSettings());
+        context.PnpmPrune(new PnpmPruneSettings());
     }
 
     /// <summary>
