@@ -1,12 +1,11 @@
 ﻿using Cake.Core.Diagnostics;
-using Cake.Pnpm.Install;
 using Cake.Pnpm.Remove;
 using NUnit.Framework;
 
 namespace Cake.Pnpm.Tests.Remove;
 
 [TestFixture]
-[TestOf(typeof(PnpmInstaller))]
+[TestOf(typeof(PnpmRemove))]
 public class PnpmRemoveTests
 {
     private PnpmRemoveFixture _fixture;

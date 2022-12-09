@@ -13,7 +13,6 @@ public class LinkTestCaseSource : IEnumerable
         yield return new TestCaseData(new PnpmLinkSettings {Path = StubPath, Color = false}).SetName("--no-color").Returns($"link \"{StubPath}\" --no-color");
         yield return new TestCaseData(new PnpmLinkSettings {Path = StubPath, Color = true}).SetName("--color").Returns($"link \"{StubPath}\" --color");
         yield return new TestCaseData(new PnpmLinkSettings {Path = StubPath, Dir = "C:\\Program Files\\Dir"}).SetName("--dir").Returns($"link \"{StubPath}\" --dir \"C:\\Program Files\\Dir\"");
-        yield return new TestCaseData(new PnpmLinkSettings {Path = StubPath, Color = false}).SetName("--no-color").Returns($"link \"{StubPath}\" --no-color");
         yield return new TestCaseData(new PnpmLinkSettings {Path = StubPath, Stream = true}).SetName("--stream").Returns($"link \"{StubPath}\" --stream");
         yield return new TestCaseData(new PnpmLinkSettings {Path = StubPath, UseStderr = true}).SetName("--use-stderr").Returns($"link \"{StubPath}\" --use-stderr");
         yield return new TestCaseData(new PnpmLinkSettings {Path = StubPath, WorkspaceRoot = true}).SetName("--workspace-root").Returns($"link \"{StubPath}\" --workspace-root");
