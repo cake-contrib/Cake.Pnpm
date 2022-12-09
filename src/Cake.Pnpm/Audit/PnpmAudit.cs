@@ -26,8 +26,8 @@ public class PnpmAudit : PnpmTool<PnpmAuditSettings>
     }
 
     /// <summary>
-    ///     Removes extraneous packages
-    ///     Visit https://pnpm.io/7.x/cli/prune for documentation about this command.
+    ///     Checks for known security issues with the installed packages.
+    ///     Visit https://pnpm.io/7.x/cli/audit for documentation about this command.
     /// </summary>
     public void Audit(PnpmAuditSettings settings)
     {
