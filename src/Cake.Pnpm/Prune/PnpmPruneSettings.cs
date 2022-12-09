@@ -4,7 +4,7 @@ using Cake.Core.IO;
 namespace Cake.Pnpm.Prune;
 
 /// <summary>
-///
+///     Contains settings used by <see cref="PnpmPrune" />.
 /// </summary>
 public class PnpmPruneSettings : PnpmSettings
 {
