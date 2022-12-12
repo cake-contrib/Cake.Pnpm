@@ -1,5 +1,4 @@
 ﻿using Cake.Pnpm.Link;
-using Cake.Pnpm.Tests.Import;
 using NUnit.Framework;
 
 namespace Cake.Pnpm.Tests.Link;
