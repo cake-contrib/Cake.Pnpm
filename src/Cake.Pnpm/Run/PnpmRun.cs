@@ -29,7 +29,7 @@ public class PnpmRun : PnpmTool<PnpmRunSettings>
     ///     Runs a defined package script.
     ///     Visit https://pnpm.io/7.x/cli/run for documentation about this command.
     /// </summary>
-    public void Exec(PnpmRunSettings settings)
+    public void Run(PnpmRunSettings settings)
     {
         if (settings == null) throw new ArgumentNullException(nameof(settings));
 

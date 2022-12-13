@@ -91,7 +91,7 @@ public class PnpmRunSettings : PnpmSettings
         if (!string.IsNullOrEmpty(Dir)) args.AppendSwitchQuoted("--dir", Dir);
         if (IfPresent) args.Append("--if-present");
         if (NoBail) args.Append("--no-bail");
-        if (Recursive) args.Append("-r");
+        if (Recursive) args.Append("--recursive");
         if (Parallel) args.Append("--parallel");
         if (Stream) args.Append("--stream");
         if (UseStderr) args.Append("--use-stderr");
