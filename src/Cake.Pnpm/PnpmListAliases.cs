@@ -2,7 +2,6 @@ using System;
 using Cake.Core;
 using Cake.Core.Annotations;
 using Cake.Npm;
-using Cake.Pnpm.Link;
 using Cake.Pnpm.List;
 
 namespace Cake.Pnpm;
