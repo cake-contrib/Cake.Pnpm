@@ -34,6 +34,9 @@ public class PnpmRebuildSettings : PnpmSettings
     /// </summary>
     public string Dir { get; set; }
 
+    /// <summary>
+    ///     Package names(s) to rebuild
+    /// </summary>
     public HashSet<string> Packages { get; }
 
     /// <summary>
