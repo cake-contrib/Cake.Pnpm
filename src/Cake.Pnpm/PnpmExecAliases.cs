@@ -39,6 +39,8 @@ public static class PnpmExecAliases
 
         if (settings == null) throw new ArgumentNullException(nameof(settings));
 
+        settings.Command = command;
+
         AddinInformation.LogVersionInformation(context.Log);
         var pnpmInstall = new PnpmExec(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools,
             context.Log);
