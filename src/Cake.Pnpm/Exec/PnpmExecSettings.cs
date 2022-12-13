@@ -19,7 +19,7 @@ public class PnpmExecSettings : PnpmSettings
     /// <summary>
     ///     Command to run
     /// </summary>
-    public string Command { get; set; }
+    public string Command { get; internal set; }
 
     /// <summary>
     ///     Run the shell command in every package found in subdirectories or

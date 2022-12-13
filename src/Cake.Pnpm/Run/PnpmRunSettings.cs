@@ -19,7 +19,7 @@ public class PnpmRunSettings : PnpmSettings
     /// <summary>
     ///     Command to run
     /// </summary>
-    public string Command { get; set; }
+    public string Command { get; internal set; }
 
     /// <summary>
     ///     Controls colors in the output. By default, output is always colored when it goes directly to a terminal
