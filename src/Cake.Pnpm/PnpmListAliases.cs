@@ -18,7 +18,7 @@ public static class PnpmListAliases
     ///     Connect the local project to another one
     /// </summary>
     /// <param name="context">The context.</param>
-    /// <param name="path">Path to what to link</param>
+    /// <param name="packages">Package names to list</param>
     [CakeMethodAlias]
     [CakeAliasCategory("List")]
     public static void PnpmList(this ICakeContext context, params string[] packages)
@@ -37,6 +37,7 @@ public static class PnpmListAliases
     /// </summary>
     /// <param name="context">The context.</param>
     /// <param name="configurator">The settings configurator.</param>
+    /// <param name="packages">Package names to list</param>
     [CakeMethodAlias]
     [CakeAliasCategory("List")]
     public static void PnpmList(this ICakeContext context, Action<PnpmListSettings> configurator, params  string[] packages)
