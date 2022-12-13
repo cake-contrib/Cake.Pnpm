@@ -14,6 +14,28 @@ namespace Cake.Pnpm;
 public static class PnpmRunAliases
 {
     /// <summary>
+    ///     Runs an arbitrary command specified in the package's "start" property of its "scripts" object
+    /// </summary>
+    /// <param name="context">The context.</param>
+    [CakeMethodAlias]
+    [CakeAliasCategory("Run")]
+    public static void PnpmStart(this ICakeContext context)
+    {
+        context.PnpmRun("start", new PnpmRunSettings());
+    }
+
+    /// <summary>
+    ///     Runs a package's "test" script, if one was provided
+    /// </summary>
+    /// <param name="context">The context.</param>
+    [CakeMethodAlias]
+    [CakeAliasCategory("Run")]
+    public static void PnpmTest(this ICakeContext context)
+    {
+        context.PnpmRun("test", new PnpmRunSettings());
+    }
+
+    /// <summary>
     ///     Runs a defined package script.
     /// </summary>
     /// <param name="context">The context.</param>
