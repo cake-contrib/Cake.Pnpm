@@ -15,14 +15,14 @@
 
         <!-- Properties related to packaging -->
         <Authors>Potapy4, aivanov@oneinc.com</Authors>
-        <Copyright>Copyright © $(FullYear) — Potapy4</Copyright>
+        <Copyright>Copyright © $(FullYear)</Copyright>
         <Description>A wrapper around pnpm functionality within a Cake build script.</Description>
         <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageProjectUrl>https://nikita potapenko.github.io/Cake.Pnpm</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/cake-contrib/Cake.Pnpm</PackageProjectUrl>
         <PackageTags>cake;addin;pnpm</PackageTags>
         <RepositoryUrl>https://github.com/cake-contrib/Cake.Pnpm.git</RepositoryUrl>
-        <PackageReleaseNotes>https://github.com/cake-contrib/Cake.Pnpm/releases/tag/$(Version)</PackageReleaseNotes>
+        <PackageReleaseNotes>https://github.com/cake-contrib/Cake.Pnpm/releases/tag/v$(Version)</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
