@@ -1,0 +1,122 @@
+using System;
+using System.Collections.Generic;
+using Cake.Core;
+using Cake.Core.Diagnostics;
+using Cake.Core.IO;
+using Cake.Core.Tooling;
+
+namespace Cake.Pnpm;
+
+/// <summary>
+///     Base class for all pnpm tools.
+/// </summary>
+/// <typeparam name="TSettings">The settings type.</typeparam>
+public abstract class PnpmTool<TSettings> : Tool<PnpmSettings>
+    where TSettings : PnpmSettings
+{
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="PnpmTool{TSettings}" /> class.
+    /// </summary>
+    /// <param name="fileSystem">The file system.</param>
+    /// <param name="environment">The environment.</param>
+    /// <param name="processRunner">The process runner.</param>
+    /// <param name="tools">The tool locator.</param>
+    /// <param name="log">Cake log instance.</param>
+    protected PnpmTool(
+        IFileSystem fileSystem,
+        ICakeEnvironment environment,
+        IProcessRunner processRunner,
+        IToolLocator tools,
+        ICakeLog log)
+        : base(fileSystem, environment, processRunner, tools)
+    {
+        CakeLog = log;
+    }
+
+    /// <summary>
+    ///     Cake log instance.
+    /// </summary>
+    public ICakeLog CakeLog { get; }
+
+    /// <summary>
+    ///     Gets the possible names of the tool executable.
+    /// </summary>
+    /// <returns>The tool executable name.</returns>
+    protected sealed override IEnumerable<string> GetToolExecutableNames()
+    {
+        yield return "pnpm.cmd";
+        yield return "pnpm.exe";
+        yield return "pnpm";
+    }
+
+    /// <summary>
+    ///     Gets the name of the tool.
+    /// </summary>
+    /// <returns>The name of the tool.</returns>
+    protected sealed override string GetToolName()
+    {
+        return "Pnpm";
+    }
+
+    /// <summary>
+    ///     Runs npm.
+    /// </summary>
+    /// <param name="settings">The settings.</param>
+    protected void RunCore(TSettings settings)
+    {
+        RunCore(settings, new ProcessSettings(), null);
+    }
+
+    /// <summary>
+    ///     Runs npm.
+    /// </summary>
+    /// <param name="settings">The settings.</param>
+    /// <param name="processSettings">The process settings. <c>null</c> for default settings.</param>
+    /// <param name="postAction">Action which should be executed after running npm. <c>null</c> for no action.</param>
+    protected void RunCore(TSettings settings, ProcessSettings processSettings, Action<IProcess> postAction)
+    {
+        if (settings == null) throw new ArgumentNullException(nameof(settings));
+
+        if (!settings.CakeVerbosityLevel.HasValue) settings.CakeVerbosityLevel = CakeLog.Verbosity;
+
+        processSettings.RedirectStandardOutput =
+            settings.RedirectStandardOutput ||
+            settings.StandardOutputAction != null;
+
+        if (settings.StandardOutputAction != null)
+            processSettings.RedirectedStandardOutputHandler = x =>
+            {
+                settings.StandardOutputAction(x);
+                return x;
+            };
+
+        processSettings.RedirectStandardError =
+            settings.RedirectStandardError ||
+            settings.StandardErrorAction != null;
+
+        if (settings.StandardErrorAction != null)
+            processSettings.RedirectedStandardErrorHandler = x =>
+            {
+                settings.StandardErrorAction(x);
+                return x;
+            };
+
+        var args = GetArguments(settings);
+        Run(settings, args, processSettings, postAction);
+    }
+
+    /// <summary>
+    ///     Builds the arguments for npm.
+    /// </summary>
+    /// <param name="settings">Settings used for building the arguments.</param>
+    /// <returns>Argument builder containing the arguments based on <paramref name="settings" />.</returns>
+    protected ProcessArgumentBuilder GetArguments(TSettings settings)
+    {
+        var args = new ProcessArgumentBuilder();
+        settings.Evaluate(args);
+
+        CakeLog.Verbose("pnpm arguments: {0}", args.RenderSafe());
+
+        return args;
+    }
+}
