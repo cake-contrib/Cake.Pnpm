@@ -8,10 +8,10 @@
       "description": "A wrapper around pnpm functionality within a Cake build script.",
       "licenseType": "MIT",
       "sourceDir": "./src",
-      "scriptName": "build.cake",
+      "scriptName": "recipe.cake",
       "enableAllContributors": true,
-      "enableWyam": true,
-      "enableTravis": true
+      "enableWyam": false,
+      "enableTravis": false
     }
   }
 }
