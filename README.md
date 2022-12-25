@@ -3,7 +3,7 @@
 [![standard-readme compliant][]][standard-readme]
 [![All Contributors][all-contributorsimage]](#contributors)
 [![Build][githubimage]][githubbuild]
-[![Codecov Report][codecovimage]][codecov]
+[![CodeQL][githubcodeanalysisimage]][githubcodeanalysis]
 
 Makes [pnpm](https://pnpm.io/) available as a tool in [Cake](https://cakebuild.net/)
 
@@ -63,8 +63,8 @@ Thanks goes to these wonderful people ([emoji key][emoji-key]):
 [all-contributorsimage]: https://img.shields.io/github/all-contributors/cake-contrib/Cake.ESLint.svg?color=orange&style=flat-square
 [githubbuild]: https://github.com/cake-contrib/Cake.Pnpm/actions/workflows/build.yml?query=branch%3Amaster
 [githubimage]: https://github.com/cake-contrib/Cake.Pnpm/actions/workflows/build.yml/badge.svg?branch=master
-[codecov]: https://codecov.io/gh/cake-contrib/Cake.Pnpm
-[codecovimage]: https://img.shields.io/codecov/c/github/cake-contrib/Cake.Pnpm.svg?logo=codecov&style=flat-square
+[githubcodeanalysis]: https://github.com/cake-contrib/Cake.Pnpm/actions/workflows/codeql-analysis.yml?query=branch%3Amaster
+[githubcodeanalysisimage]: https://github.com/cake-contrib/Cake.Pnpm/actions/workflows/codeql-analysis.yml/badge.svg?branch=master
 [contrib-covenant]: https://www.contributor-covenant.org/version/1/4/code-of-conduct
 [contributing]: CONTRIBUTING.md
 [license]: LICENSE.txt
