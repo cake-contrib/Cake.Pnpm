@@ -1,13 +1,14 @@
 # Cake.Pnpm
 
 [![standard-readme compliant][]][standard-readme]
-[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors)
-[![Appveyor build][appveyorimage]][appveyor]
-[![Travis build][travisimage]][travis]
+[![All Contributors][all-contributorsimage]](#contributors)
+[![Build][githubimage]][githubbuild]
 [![Codecov Report][codecovimage]][codecov]
 [![NuGet package][nugetimage]][nuget]
 
-> A wrapper around pnpm functionality within a Cake build script.
+Makes [pnpm](https://pnpm.io/) available as a tool in Cake.
+
+Makes [pnpm](https://pnpm.io/) available as a tool in [Cake](https://cakebuild.net/)
 
 ## Table of Contents
 
