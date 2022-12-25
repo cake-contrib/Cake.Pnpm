@@ -4,9 +4,6 @@
 [![All Contributors][all-contributorsimage]](#contributors)
 [![Build][githubimage]][githubbuild]
 [![Codecov Report][codecovimage]][codecov]
-[![NuGet package][nugetimage]][nuget]
-
-Makes [pnpm](https://pnpm.io/) available as a tool in Cake.
 
 Makes [pnpm](https://pnpm.io/) available as a tool in [Cake](https://cakebuild.net/)
 
@@ -37,7 +34,7 @@ Task("MyTask").Does(() => {
 
 ## Maintainer
 
-[Potapy4 @Potapy4][maintainer]
+[Aleksandr Ivanov @aivanov-oneinc][maintainer]
 
 ## Contributing
 
@@ -63,18 +60,14 @@ Thanks goes to these wonderful people ([emoji key][emoji-key]):
 [MIT License © Potapy4][license]
 
 [all-contributors]: https://github.com/all-contributors/all-contributors
-[appveyor]: https://ci.appveyor.com/project/nikita potapenko/cake-pnpm
-[appveyorimage]: https://img.shields.io/appveyor/ci/nikita potapenko/cake-pnpm.svg?logo=appveyor&style=flat-square
-[codecov]: https://codecov.io/gh/Nikita Potapenko/Cake.Pnpm
-[codecovimage]: https://img.shields.io/codecov/c/github/Nikita Potapenko/Cake.Pnpm.svg?logo=codecov&style=flat-square
+[all-contributorsimage]: https://img.shields.io/github/all-contributors/cake-contrib/Cake.ESLint.svg?color=orange&style=flat-square
+[githubbuild]: https://github.com/cake-contrib/Cake.Pnpm/actions/workflows/build.yml?query=branch%3Amaster
+[githubimage]: https://github.com/cake-contrib/Cake.Pnpm/actions/workflows/build.yml/badge.svg?branch=master
+[codecov]: https://codecov.io/gh/cake-contrib/Cake.Pnpm
+[codecovimage]: https://img.shields.io/codecov/c/github/cake-contrib/Cake.Pnpm.svg?logo=codecov&style=flat-square
 [contrib-covenant]: https://www.contributor-covenant.org/version/1/4/code-of-conduct
 [contributing]: CONTRIBUTING.md
-[emoji-key]: https://allcontributors.org/docs/en/emoji-key
-[maintainer]: https://github.com/Potapy4
-[nuget]: https://nuget.org/packages/Cake.Pnpm
-[nugetimage]: https://img.shields.io/nuget/v/Cake.Pnpm.svg?logo=nuget&style=flat-square
-[license]: LICENSE
+[license]: LICENSE.txt
+[maintainer]: https://github.com/aivanov-oneinc
 [standard-readme]: https://github.com/RichardLitt/standard-readme
 [standard-readme compliant]: https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square
-[travis]: https://travis-ci.org/Nikita Potapenko/Cake.Pnpm
-[travisimage]: https://img.shields.io/travis/Nikita Potapenko/Cake.Pnpm.svg?logo=travis&style=flat-square
