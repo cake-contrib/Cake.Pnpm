@@ -1,5 +1,6 @@
 # Cake.Pnpm
 
+[![License](https://img.shields.io/:license-mit-blue.svg)][license]
 [![standard-readme compliant][]][standard-readme]
 [![All Contributors][all-contributorsimage]](#contributors)
 [![Build][githubimage]][githubbuild]
@@ -8,21 +9,31 @@
 Makes [pnpm](https://pnpm.io/) available as a tool in [Cake](https://cakebuild.net/)
 
 ## Table of Contents
-
-- [Install](#install)
-- [Usage](#usage)
-- [Maintainer](#maintainer)
-- [Contributing](#contributing)
-  - [Contributors](#contributors)
-- [License](#license)
-
+<!-- TOC -->
+* [Install](#install)
+  * [Cake script](#cake-script)
+  * [Cake Frosting](#cake-frosting)
+* [Usage](#usage)
+  * [Cake script](#cake-script-1)
+  * [Cake Frosting](#cake-frosting-1)
+* [Maintainer](#maintainer)
+* [Contributing](#contributing)
+<!-- TOC -->
 ## Install
+
+### Cake script
 
 ```cs
 #addin nuget:?package=Cake.Pnpm
 ```
 
+### Cake Frosting
+
+Install as a NuGet package in your build project
+
 ## Usage
+
+### Cake script
 
 ```cs
 #addin nuget:?package=Cake.Pnpm
@@ -30,6 +41,16 @@ Makes [pnpm](https://pnpm.io/) available as a tool in [Cake](https://cakebuild.n
 Task("MyTask").Does(() => {
   Pnpm();
 });
+```
+
+### Cake Frosting
+
+```cs
+using Cake.Pnpm;
+
+/*...*/
+
+context.PnpmAdd("@angular/cli");
 ```
 
 ## Maintainer
@@ -47,18 +68,6 @@ Small note: If editing the Readme, please conform to the [standard-readme][] spe
 
 This project follows the [all-contributors][] specification. Contributions of any kind welcome!
 
-### Contributors
-
-Thanks goes to these wonderful people ([emoji key][emoji-key]):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-## License
-
-[MIT License © Potapy4][license]
-
 [all-contributors]: https://github.com/all-contributors/all-contributors
 [all-contributorsimage]: https://img.shields.io/github/all-contributors/cake-contrib/Cake.ESLint.svg?color=orange&style=flat-square
 [githubbuild]: https://github.com/cake-contrib/Cake.Pnpm/actions/workflows/build.yml?query=branch%3Amaster
@@ -67,7 +76,7 @@ Thanks goes to these wonderful people ([emoji key][emoji-key]):
 [githubcodeanalysisimage]: https://github.com/cake-contrib/Cake.Pnpm/actions/workflows/codeql-analysis.yml/badge.svg?branch=master
 [contrib-covenant]: https://www.contributor-covenant.org/version/1/4/code-of-conduct
 [contributing]: CONTRIBUTING.md
-[license]: LICENSE.txt
+[license]: LICENSE
 [maintainer]: https://github.com/aivanov-oneinc
 [standard-readme]: https://github.com/RichardLitt/standard-readme
 [standard-readme compliant]: https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square
